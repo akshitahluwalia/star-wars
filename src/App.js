@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PlanetList from './containers/planet_list';
 import './App.css';
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
           <input type="text" className="form-control" placeholder="Search an amazing planet to live..." /> 
         </div>
         <div className="row" id="secondary">
-          
+          <PlanetList />
         </div>
       </div>
     );
