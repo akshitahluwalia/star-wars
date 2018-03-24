@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PlanetList from './containers/planet_list';
+import SavedList from './containers/saved_list';
 import './App.css';
 import searchTermChanged from './actions/search_term_changed'
 import { connect } from 'react-redux';
@@ -30,6 +31,7 @@ class App extends Component {
         </div>
         <div className="row" id="secondary">
           <PlanetList />
+          <SavedList />
         </div>
       </div>
     );
