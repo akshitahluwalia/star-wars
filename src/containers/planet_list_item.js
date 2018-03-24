@@ -5,20 +5,24 @@ import saveItem from '../actions/save_item';
 
 class PlanetListItem extends Component{
 	render(props){
+		console.log(this.props);
 		return(
 			<li className="list-group-item clearfix">
 				<span>{ this.props.planet.name }</span>
 				<span className="pull-right">
-		        	<button className="btn btn-xs btn-info" onClick={ () => this.props.saveItem(planet) }>Save</button>
+		        	<button className="btn btn-xs btn-info" onClick={ () => this.props.saveItem(this.props.planet) }>Save</button>
 		      	</span>
 			</li>
 		);
 	}
 }
-mapStateToProps(state){
-	return({});
+function mapStateToProps(state){
+	return({
+
+	});
 }
-mapDispatchToProps(dispatch){
+
+function mapDispatchToProps(dispatch){
 	return bindActionCreators({
 		saveItem: saveItem
 	},dispatch);

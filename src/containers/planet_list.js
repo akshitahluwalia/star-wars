@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PlanetListItem from './planet_list_item';
+import initial_load from '../actions/initial_load';
 
 class PlanetList extends Component{
 
-	mapPlanetsToListItems(){
-		return this.props.planets.map( planet => {
-			return(
-				<PlanetListItem  
-					planet={ planet } 
-					key={ planet.url }/>
-			);
-		});
+	componentDidMount(){
+		this.props.intial_load();
 	}
 
 	render(props){
+		console.log("planets", this.props)
 		if(!this.props.planets){
 			return("Loading Planets...");
 		}
@@ -25,7 +22,8 @@ class PlanetList extends Component{
 	                    <h3 class="panel-title">Planets</h3>
 	                </div>
 	                <ul class="list-group">
-						{ this.mapPlanetsToListItems() }
+						{ Object.keys(this.props.planets).map( key => <PlanetListItem planet={ this.props.planets[key] } 
+							key={ this.props.planets[key].url }/> ) }
 	           		</ul>
 	            </div>
           	</div>
@@ -33,11 +31,17 @@ class PlanetList extends Component{
 	}
 }
 
-const mapStateToProps(state){
+function mapStateToProps(state){
 	return({
 		planets: state.planets
 	});
 }
 
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({
+		intial_load: initial_load
+	},dispatch);
+}
 
-export default connect(mapStateToProps)(PlanetList);
+
+export default connect(mapStateToProps,mapDispatchToProps)(PlanetList);
